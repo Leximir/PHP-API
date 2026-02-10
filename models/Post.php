@@ -168,6 +168,30 @@ class Post {
         printf("Error: %s.\n", $stmt->errorInfo());
         return false;
     }
+    public function delete()
+    {
+        // Create query
+        $query =
+            "DELETE FROM " . $this->table . " " .
+            "WHERE id = :id";
+
+        // Prepare stmt
+        $stmt = $this->conn->prepare($query);
+
+        // Clean data
+        $this->id = htmlspecialchars(strip_tags($this->id));
+
+        // Bind data
+        $stmt->bindParam(":id", $this->id);
+
+        if($stmt->execute()){
+            return true;
+        }
+
+        // Return error
+        printf("Error: %s.\n", $stmt->errorInfo());
+        return false;
+    }
 
 
 }

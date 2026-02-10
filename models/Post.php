@@ -108,7 +108,7 @@ class Post {
                 category_id = :category_id";
 
         // Prepare stmt
-        $stmt = $this->conn->prepare($stmt);
+        $stmt = $this->conn->prepare($query);
 
         // Clean data
         $this->title = htmlspecialchars(strip_tags($this->title));
@@ -127,7 +127,7 @@ class Post {
         }
 
         // Return error
-        printf("Error: %s.\n", $stmt->error);
+        printf("Error: %s.\n", $stmt->errorInfo());
         return false;
     }
 

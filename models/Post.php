@@ -23,7 +23,7 @@ class Post {
     }
 
 //    Get Posts
-    public function read()
+    public function index()
     {
         $query =
         "SELECT 
@@ -56,6 +56,12 @@ class Post {
         $stmt->execute();
 
         return $stmt;
+    }
+
+    // Get single post (show)
+    public function show()
+    {
+
     }
 
 

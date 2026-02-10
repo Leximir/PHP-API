@@ -17,7 +17,7 @@ $db = $database->connect(); // Poziva connect() da dobije PDO konekciju i čuva 
 $post = new Post($db); // Kreira Post objekat i prosljeđuje konekciju bazi u konstruktor.
 
 // Blog post query
-$result = $post->read();// Poziva read() metodu koja treba da vrati PDOStatement rezultat (ili nešto slično).
+$result = $post->index();// Poziva read() metodu koja treba da vrati PDOStatement rezultat (ili nešto slično).
 
 // Get row count
 $num = $result->rowCount(); // Poziva rowCount() nad statement-om da dobije broj redova.

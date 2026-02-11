@@ -42,4 +42,28 @@ class Category
 
         return $stmt;
     }
+
+    public function create()
+    { //"2026-02-10 00:00:49"
+        $query =
+            "INSERT INTO " . $this->table . " " .
+            "SET 
+                name = :name,
+                created_at = :created_at";
+
+        $stmt = $this->conn->prepare($query);
+
+        $this->name = htmlspecialchars(strip_tags($this->name));
+        $this->created_at = date("Y-m-d H:i:s");
+
+        $stmt->bindParam(":name", $this->name);
+        $stmt->bindParam(":created_at", $this->created_at);
+
+        if($stmt->execute()){
+            return true;
+        }
+
+        printf("Error: %s.\n", $stmt->errorInfo());
+        return false;
+    }
 }
